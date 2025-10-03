@@ -110,8 +110,8 @@ body{
 .certification{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
 .certification img{width:100%; height:180px; object-fit:cover; display:block}
 .certification__meta{color:var(--muted); font-size:14px; padding:10px 16px 0}
-.certification__title{padding:4px 16px 8px; display:inline-block; margin:0 16px 16px; text-decoration:none; color:var(--text)}
-.certification__title:hover{color:var(--primary); border-color:var(--primary)}
+.certification__link{padding:4px 16px 8px; display:inline-block; margin:0; font-size:20px; text-decoration:none; color:var(--text)}
+.certification__link:hover{color:var(--primary); border-color:var(--primary)}
 
 /* Partnerships */
 .grid--partnerships{grid-template-columns:repeat(3,1fr)}
