@@ -119,17 +119,29 @@ body{
 
 /* Certifications */
 .grid--certifications{grid-template-columns:repeat(4,1fr)}
+#certifications .section__title {
+  font-size: 36px;
+  margin-bottom: 18px;
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
 .certification{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:var(--shadow)}
 .certification img{width:100%; height:140px; object-fit:fill; display:block}
 .certification__meta{color:var(--muted); font-size:12px; padding:10px 16px 0}
-.certification__title {padding: 4px 16px 5px; display: inline-block; margin: 0 16px 16px; text-decoration: none; color: var(--text); font-size: 13px; font-weight: 600; border-bottom: 1px solid var(--border); background: none; cursor: pointer; transition: color 0.2s, border-color 0.2s;}
+.certification__title {padding: 4px 16px 8px; display: inline-block; margin: 0 16px 16px; text-decoration: none; color: var(--text); font-size: 15px; font-weight: 600; border-bottom: 1px solid var(--border); background: none; cursor: pointer; transition: color 0.2s, border-color 0.2s;}
 .certification__title:hover,
 .certification__title:focus {color: var(--primary); border-color: var(--primary); text-decoration: none;}
 
 /* Partnerships */
 .grid--partnerships{grid-template-columns:repeat(5,1fr)}
+#Partnerships .section__title {
+  font-size: 36px;
+  margin-bottom: 18px;
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
 .partner{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
-.partner__title{padding:4px 16px 5px; margin:0; font-size:13px}
+.partner__title{padding:4px 16px 8px; margin:0; font-size:15px}
 
 /* Service page specifics */
 .page__title{font-size:48px;margin:12px 0 8px}
