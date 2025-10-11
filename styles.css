@@ -62,7 +62,7 @@ body{
 }
 .btn--outline:hover{background:rgba(255,255,255,0.08)}
 
-/* Cards grid */
+/* Services */
 .grid{display:grid; gap:28px}
 .grid--cards{grid-template-columns:repeat(3,1fr)}
 .card{
@@ -79,14 +79,16 @@ body{
 }
 .btn--ghost:hover{border-color:var(--primary); color:var(--primary)}
 
-/* Thumbs grid */
+/* Tools & Applications */
 .grid--thumbs{grid-template-columns:repeat(4,1fr)}
 .thumb{position:relative; display:block; border-radius:14px; overflow:hidden; box-shadow:var(--shadow);}
 .thumb img{width:100%; height:220px; object-fit:cover; display:block; transition:transform .4s ease}
 .thumb:hover img{transform:scale(1.04)}
 .thumb__label{
   position:absolute; left:14px; bottom:12px; color:#fff; font-weight:600; font-size:20px;
-  text-shadow:0 2px 8px rgba(0,0,0,.45)
+  /* Add thick dark border around text for visibility */
+  -webkit-text-stroke: 2px #111827;
+  text-shadow: 0 2px 8px rgba(0,0,0,.45);
 }
 
 /* Usage stats split */
@@ -107,10 +109,10 @@ body{
 
 /* Certifications */
 .grid--certifications{grid-template-columns:repeat(4,1fr)}
-.certification{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
-.certification img{width:100%; height:220px; object-fit:fill; display:block}
-.certification__meta{color:var(--muted); font-size:14px; padding:10px 16px 0}
-.certification__title {padding: 4px 16px 8px; display: inline-block; margin: 0 16px 16px; text-decoration: none; color: var(--text); font-size: 18px; font-weight: 600; border-bottom: 1px solid var(--border); background: none; cursor: pointer; transition: color 0.2s, border-color 0.2s;}
+.certification{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:var(--shadow)}
+.certification img{width:100%; height:140px; object-fit:fill; display:block}
+.certification__meta{color:var(--muted); font-size:12px; padding:10px 16px 0}
+.certification__title {padding: 4px 16px 8px; display: inline-block; margin: 0 16px 16px; text-decoration: none; color: var(--text); font-size: 15px; font-weight: 600; border-bottom: 1px solid var(--border); background: none; cursor: pointer; transition: color 0.2s, border-color 0.2s;}
 .certification__title:hover,
 .certification__title:focus {color: var(--primary); border-color: var(--primary); text-decoration: none;}
 
