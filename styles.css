@@ -1,3 +1,13 @@
+/* Inline code styling for better visibility */
+code {
+  background: #f5f7fb;
+  color: #222;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.97em;
+  font-family: 'Fira Mono', 'Consolas', 'Monaco', monospace;
+  box-shadow: 0 1px 2px rgba(17,24,39,0.06);
+}
 :root{
   --primary:#3B82F6;
   --accent:#F59E0B;
@@ -87,7 +97,7 @@ body{
 .thumb__label{
   position:absolute; left:14px; bottom:12px; color:#fff; font-weight:600; font-size:20px;
   /* Add thick dark border around text for visibility */
-  -webkit-text-stroke: 2px #111827;
+  -webkit-text-stroke: 1px #111827;
   text-shadow: 0 2px 8px rgba(0,0,0,.45);
 }
 
@@ -101,7 +111,7 @@ body{
 /* Guides */
 .grid--guides{grid-template-columns:repeat(3,1fr)}
 .guide{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
-.guide img{width:100%; height:180px; object-fit:cover; display:block}
+.guide img{width:100%; height:180px; object-fit:contain; display:block}
 .guide__meta{color:var(--muted); font-size:14px; padding:10px 16px 0}
 .guide__title{padding:4px 16px 8px; margin:0; font-size:20px}
 .guide__link{display:inline-block; margin:0 16px 16px; text-decoration:none; color:var(--text); border-bottom:1px solid var(--border)}
@@ -112,14 +122,14 @@ body{
 .certification{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:var(--shadow)}
 .certification img{width:100%; height:140px; object-fit:fill; display:block}
 .certification__meta{color:var(--muted); font-size:12px; padding:10px 16px 0}
-.certification__title {padding: 4px 16px 8px; display: inline-block; margin: 0 16px 16px; text-decoration: none; color: var(--text); font-size: 15px; font-weight: 600; border-bottom: 1px solid var(--border); background: none; cursor: pointer; transition: color 0.2s, border-color 0.2s;}
+.certification__title {padding: 4px 16px 5px; display: inline-block; margin: 0 16px 16px; text-decoration: none; color: var(--text); font-size: 13px; font-weight: 600; border-bottom: 1px solid var(--border); background: none; cursor: pointer; transition: color 0.2s, border-color 0.2s;}
 .certification__title:hover,
 .certification__title:focus {color: var(--primary); border-color: var(--primary); text-decoration: none;}
 
 /* Partnerships */
 .grid--partnerships{grid-template-columns:repeat(5,1fr)}
 .partner{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
-.partner__title{padding:4px 16px 8px; margin:0; font-size:15px}
+.partner__title{padding:4px 16px 5px; margin:0; font-size:13px}
 
 /* Service page specifics */
 .page__title{font-size:48px;margin:12px 0 8px}
