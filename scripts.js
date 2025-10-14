@@ -29,75 +29,45 @@ sections.forEach(sec => obs.observe(sec));
 
 // Usage Statistics Wave Carousel
 document.addEventListener('DOMContentLoaded', function() {
-    const container = document.querySelector('.wave-container');
-    const group = document.querySelector('.wave-card-group');
-    const left = document.querySelector('.wave-arrow.left');
-    const right = document.querySelector('.wave-arrow.right');
-    const cards = Array.from(document.querySelectorAll('.wave-card'));
-    
-    let currentPosition = 0;
-    const visibleCards = 4;
-    const totalCards = cards.length;
+    const carousel = {
+        container: document.querySelector('.wave-container'),
+        group: document.querySelector('.wave-card-group'),
+        prevBtn: document.querySelector('.wave-arrow.left'),
+        nextBtn: document.querySelector('.wave-arrow.right'),
+        cards: Array.from(document.querySelectorAll('.wave-card')),
+        position: 0,
+        visibleCards: 4
+    };
 
-    function getCardWidth() {
-        const card = cards[0];
-        const style = window.getComputedStyle(card);
-        return card.offsetWidth + 
-               parseInt(style.marginLeft) + 
-               parseInt(style.marginRight);
+    function moveCarousel(direction) {
+        const totalCards = carousel.cards.length;
+        const cardWidth = carousel.cards[0].offsetWidth + 80; // width + margins
+        const maxPosition = totalCards - carousel.visibleCards;
+
+        // Update position
+        carousel.position = Math.max(0, Math.min(maxPosition, carousel.position + direction));
+
+        // Calculate movement
+        const moveX = -carousel.position * cardWidth;
+        
+        // Apply transform
+        carousel.group.style.transform = `translateX(${moveX}px)`;
+
+        // Update button states
+        carousel.prevBtn.disabled = carousel.position === 0;
+        carousel.nextBtn.disabled = carousel.position === maxPosition;
+        
+        // Update button styles
+        carousel.prevBtn.style.opacity = carousel.position === 0 ? '0.5' : '1';
+        carousel.nextBtn.style.opacity = carousel.position === maxPosition ? '0.5' : '1';
     }
 
-    function updateCarousel() {
-        const cardWidth = getCardWidth();
-        const moveAmount = -currentPosition * cardWidth;
-        
-        // Move the entire group (cards + wave)
-        group.style.transform = `translateX(${moveAmount}px)`;
-        
-        // Update arrow states
-        left.style.opacity = currentPosition === 0 ? '0.5' : '1';
-        right.style.opacity = currentPosition >= totalCards - visibleCards ? '0.5' : '1';
-        left.disabled = currentPosition === 0;
-        right.disabled = currentPosition >= totalCards - visibleCards;
-
-        // Update card visibility
-        cards.forEach((card, index) => {
-            if (index >= currentPosition && index < currentPosition + visibleCards) {
-                card.style.opacity = '1';
-                card.style.pointerEvents = 'auto';
-            } else {
-                card.style.opacity = '0';
-                card.style.pointerEvents = 'none';
-            }
-        });
-    }
-
-    // Add click handlers
-    left.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (currentPosition > 0) {
-            currentPosition--;
-            updateCarousel();
-        }
-    });
-
-    right.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (currentPosition < totalCards - visibleCards) {
-            currentPosition++;
-            updateCarousel();
-        }
-    });
-
-    // Handle window resize
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(updateCarousel, 100);
-    });
+    // Event Listeners
+    carousel.prevBtn.addEventListener('click', () => moveCarousel(-1));
+    carousel.nextBtn.addEventListener('click', () => moveCarousel(1));
 
     // Initial setup
-    updateCarousel();
+    moveCarousel(0);
 });
 
 // Footer year

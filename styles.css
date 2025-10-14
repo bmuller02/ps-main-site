@@ -119,13 +119,19 @@ body{
 .list li+li{margin-top:6px}
 
 /* Usage Statistics Wave Design */
+#stats {
+  padding-top: 160px !important;  /* Extra space for crest cards */
+  padding-bottom: 160px !important;
+  overflow: visible !important;
+}
+
 .wave-container {
   position: relative;
-  overflow: hidden;
   width: 100%;
   min-height: 600px;
-  margin: 120px -24px;  /* Added top margin for visibility */
-  padding: 40px 0;      /* Added padding to prevent clipping */
+  margin: 0;
+  padding: 40px 0;
+  overflow: visible;
 }
 
 .wave-arrow {
@@ -159,12 +165,25 @@ body{
 .wave-card-group {
   display: flex;
   position: relative;
-  align-items: center;  /* Changed from flex-end to center */
-  width: max-content;   /* Allow container to be as wide as needed */
-  padding: 0 calc(50% - 480px);
+  align-items: center;
+  width: max-content;
+  padding: 0;
   transform: translateX(0);
   transition: transform 0.5s ease-in-out;
-  margin: 0 auto;      /* Center the group */
+  margin: 0 auto;
+}
+
+.wave-card-group::before {  /* Move wave pattern here */
+  content: '';
+  position: absolute;
+  left: -50vw;
+  right: -50vw;
+  top: 50%;
+  height: 240px;
+  background: url('data:image/svg+xml;utf8,<svg width="100%" height="240" xmlns="http://www.w3.org/2000/svg"><path d="M0 120 Q 120 0, 240 120 T 480 120 T 720 120 T 960 120 T 1200 120" stroke="%233B82F6" stroke-width="4" fill="none"/></svg>') repeat-x;
+  transform: translateY(-50%);
+  z-index: 0;
+  pointer-events: none;
 }
 
 .wave-card-group::before {
@@ -180,8 +199,8 @@ body{
 }
 
 .wave-card {
-  width: 160px;
-  height: 160px;
+  width: 200px;
+  height: 200px;
   background: #fff;
   border-radius: 24px;
   box-shadow: var(--shadow);
@@ -199,11 +218,11 @@ body{
 }
 
 .wave-card.crest {
-  transform: translateY(-100px);  /* Increased offset */
+  transform: translateY(-120px);
 }
 
 .wave-card.trough {
-  transform: translateY(100px);   /* Increased offset */
+  transform: translateY(120px);
 }
 
 .wave-card img {
