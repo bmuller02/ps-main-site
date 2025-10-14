@@ -28,56 +28,72 @@ const obs = new IntersectionObserver((entries) => {
 sections.forEach(sec => obs.observe(sec));
 
 // Usage Statistics Wave Carousel
-  const group = document.getElementById('wave-card-group');
-  const left = document.getElementById('wave-arrow-left');
-  const right = document.getElementById('wave-arrow-right');
-  const cards = group ? group.children : [];
-  let current = 0;
-  const visible = 3;
-  function update() {
-    if (!group) return;
-    const offset = -current * (cards[0]?.offsetWidth + 32 || 112);
-    group.style.transform = `translateX(${offset}px)`;
-    left.disabled = current === 0;
-    right.disabled = current >= cards.length - visible;
-  }
-  if (left && right && group) {
-    left.addEventListener('click', function() {
-      if (current > 0) current--;
-      update();
-    });
-    right.addEventListener('click', function() {
-      if (current < cards.length - visible) current++;
-      update();
-    });
-    update();
-  }
-});
 document.addEventListener('DOMContentLoaded', function() {
   const group = document.getElementById('wave-card-group');
   const left = document.getElementById('wave-arrow-left');
   const right = document.getElementById('wave-arrow-right');
   const cards = group ? group.children : [];
   let current = 0;
-  const visible = 4;
+  const visible = 4; // Show 4 cards at once
+
   function getCardWidth() {
-    if (!cards.length) return 160;
-    return cards[0].offsetWidth + 32; // 32px margin (16px each side)
+    if (!cards.length) return 400; // Card width (160px) + margins (240px)
+    const card = cards[0];
+    const style = window.getComputedStyle(card);
+    const width = card.offsetWidth;
+    const marginLeft = parseInt(style.marginLeft);
+    const marginRight = parseInt(style.marginRight);
+    return width + marginLeft + marginRight;
   }
+
+  function updateVisibility() {
+    // Show/hide cards based on visibility
+    Array.from(cards).forEach((card, index) => {
+      const isVisible = index >= current && index < current + visible;
+      card.style.opacity = isVisible ? '1' : '0';
+      card.style.pointerEvents = isVisible ? 'auto' : 'none';
+    });
+  }
+
   function update() {
     if (!group) return;
     const cardWidth = getCardWidth();
     const offset = -current * cardWidth;
     group.style.transform = `translateX(${offset}px)`;
+    
+    // Update button states
     left.disabled = current === 0;
     right.disabled = current >= cards.length - visible;
+    
+    // Update card visibility
+    updateVisibility();
   }
+
+  // Event listeners
   if (left && right && group) {
     left.addEventListener('click', function() {
-      if (current > 0) current--;
+      if (current > 0) {
+        current--;
+        update();
+      }
+    });
+
+    right.addEventListener('click', function() {
+      if (current < cards.length - visible) {
+        current++;
+        update();
+      }
+    });
+
+    // Update on window resize
+    window.addEventListener('resize', () => {
       update();
     });
-    right.addEventListener('click', function() {
+
+    // Initial update
+    update();
+  }
+});
       if (current < cards.length - visible) current++;
       update();
     });

@@ -106,8 +106,8 @@ body{
 .thumb img{width:100%; height:220px; object-fit:cover; display:block; transition:transform .4s ease}
 .thumb:hover img{transform:scale(1.04)}
 .thumb__label{
-  position:absolute; left:14px; bottom:12px; color:#fff; font-weight:600; font-size:20px;
-  text-shadow: 0 2px 8px rgba(0,0,0,.45);
+  position:absolute; left:14px; bottom:12px; color:#3B82F6; font-weight:600; font-size:20px;
+  text-shadow: 0 2px 8px #fff(0,0,0,.45);
   z-index: 3;
 }
 
@@ -119,14 +119,27 @@ body{
 .list li+li{margin-top:6px}
 
 /* Usage Statistics Wave Design */
+.usage-stats-section {
+  padding: 72px 0;
+}
+.usage-stats-section .section__title {
+  max-width: 1180px;
+  margin: 0 auto 28px;
+  padding: 0 24px;
+}
 .usage-stats-wave {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  min-height: 320px;
-  overflow: hidden;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  min-height: 480px;
+  overflow: visible;
+  background: none;
 }
 
 .wave-arrow {
@@ -162,8 +175,8 @@ body{
   content: '';
   position: absolute;
   left: 0; right: 0; top: 50%;
-  height: 40px;
-  background: url('data:image/svg+xml;utf8,<svg width="100%" height="40" xmlns="http://www.w3.org/2000/svg"><path d="M0 20 Q 60 0, 120 20 T 240 20 T 360 20 T 480 20 T 600 20 T 720 20 T 840 20 T 960 20 T 1080 20 T 1200 20" stroke="%233B82F6" stroke-width="4" fill="none"/></svg>');
+  height: 240px;
+  background: url('data:image/svg+xml;utf8,<svg width="100%" height="240" xmlns="http://www.w3.org/2000/svg"><path d="M0 120 Q 120 0, 240 120 T 480 120 T 720 120 T 960 120 T 1200 120" stroke="%233B82F6" stroke-width="4" fill="none"/></svg>');
   z-index: 0;
 }
 
@@ -187,15 +200,15 @@ body{
   align-items: center;
   justify-content: center;
   position: relative;
-  margin: 0 16px;
+  margin: 0 120px;
   overflow: visible;
   transition: box-shadow 0.2s;
 }
 .wave-card.crest {
-  margin-top: 0;
+  margin-top: -80px;
 }
 .wave-card.trough {
-  margin-top: 40px;
+  margin-top: 80px;
 }
 
 .wave-card img {
@@ -274,9 +287,37 @@ body{
   .grid--thumbs{grid-template-columns:repeat(2,1fr)}
   .grid--guides{grid-template-columns:repeat(2,1fr)}
   .stats{grid-template-columns:1fr}
+  .wave-card {
+    width: 140px;
+    height: 140px;
+    margin: 0 80px;
+  }
+  .wave-card.crest {
+    margin-top: -60px;
+  }
+  .wave-card.trough {
+    margin-top: 60px;
+  }
 }
 @media (max-width: 700px){
   .grid--cards,.grid--thumbs,.grid--guides{grid-template-columns:1fr}
   .section__title{font-size:36px}
   .page__title{font-size:36px}
+  .wave-card {
+    width: 100px;
+    height: 100px;
+    margin: 0 40px;
+  }
+  .wave-card.crest {
+    margin-top: -40px;
+  }
+  .wave-card.trough {
+    margin-top: 40px;
+  }
+  .usage-stats-wave {
+    min-height: 360px;
+  }
+  .wave-cards-container::before {
+    height: 160px;
+  }
 }
