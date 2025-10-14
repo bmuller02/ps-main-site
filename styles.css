@@ -123,8 +123,9 @@ body{
   position: relative;
   overflow: hidden;
   width: 100%;
-  min-height: 480px;
-  margin: 0 -24px;
+  min-height: 600px;
+  margin: 120px -24px;  /* Added top margin for visibility */
+  padding: 40px 0;      /* Added padding to prevent clipping */
 }
 
 .wave-arrow {
@@ -158,11 +159,12 @@ body{
 .wave-card-group {
   display: flex;
   position: relative;
-  align-items: flex-end;
-  width: 100%;
+  align-items: center;  /* Changed from flex-end to center */
+  width: max-content;   /* Allow container to be as wide as needed */
   padding: 0 calc(50% - 480px);
   transform: translateX(0);
   transition: transform 0.5s ease-in-out;
+  margin: 0 auto;      /* Center the group */
 }
 
 .wave-card-group::before {
@@ -190,16 +192,18 @@ body{
   position: relative;
   margin: 0 40px;
   overflow: visible;
-  transition: transform 0.5s ease-in-out, opacity 0.3s ease;
+  transition: all 0.5s ease-in-out;
   flex-shrink: 0;
+  opacity: 1;
+  z-index: 1;
 }
 
 .wave-card.crest {
-  transform: translateY(-80px);
+  transform: translateY(-100px);  /* Increased offset */
 }
 
 .wave-card.trough {
-  transform: translateY(80px);
+  transform: translateY(100px);   /* Increased offset */
 }
 
 .wave-card img {

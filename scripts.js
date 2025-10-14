@@ -39,31 +39,50 @@ document.addEventListener('DOMContentLoaded', function() {
     const visibleCards = 4;
     const totalCards = cards.length;
 
+    function getCardWidth() {
+        const card = cards[0];
+        const style = window.getComputedStyle(card);
+        return card.offsetWidth + 
+               parseInt(style.marginLeft) + 
+               parseInt(style.marginRight);
+    }
+
     function updateCarousel() {
-        // Calculate the width of one card position (including margins)
-        const cardWidth = container.offsetWidth / visibleCards;
+        const cardWidth = getCardWidth();
+        const moveAmount = -currentPosition * cardWidth;
         
         // Move the entire group (cards + wave)
-        group.style.transform = `translateX(${-currentPosition * cardWidth}px)`;
+        group.style.transform = `translateX(${moveAmount}px)`;
         
-        // Update arrow visibility
+        // Update arrow states
         left.style.opacity = currentPosition === 0 ? '0.5' : '1';
         right.style.opacity = currentPosition >= totalCards - visibleCards ? '0.5' : '1';
-        
-        // Enable/disable arrows
         left.disabled = currentPosition === 0;
         right.disabled = currentPosition >= totalCards - visibleCards;
+
+        // Update card visibility
+        cards.forEach((card, index) => {
+            if (index >= currentPosition && index < currentPosition + visibleCards) {
+                card.style.opacity = '1';
+                card.style.pointerEvents = 'auto';
+            } else {
+                card.style.opacity = '0';
+                card.style.pointerEvents = 'none';
+            }
+        });
     }
 
     // Add click handlers
-    left.addEventListener('click', () => {
+    left.addEventListener('click', (e) => {
+        e.preventDefault();
         if (currentPosition > 0) {
             currentPosition--;
             updateCarousel();
         }
     });
 
-    right.addEventListener('click', () => {
+    right.addEventListener('click', (e) => {
+        e.preventDefault();
         if (currentPosition < totalCards - visibleCards) {
             currentPosition++;
             updateCarousel();
@@ -71,7 +90,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Handle window resize
-    window.addEventListener('resize', updateCarousel);
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(updateCarousel, 100);
+    });
 
     // Initial setup
     updateCarousel();
