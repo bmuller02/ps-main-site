@@ -119,32 +119,20 @@ body{
 .list li+li{margin-top:6px}
 
 /* Usage Statistics Wave Design */
-.usage-stats-section {
-  padding: 72px 0;
-}
-.usage-stats-section .section__title {
-  max-width: 1180px;
-  margin: 0 auto 28px;
-  padding: 0 24px;
-}
-.usage-stats-wave {
+.wave-container {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
+  overflow: hidden;
+  width: 100%;
   min-height: 480px;
-  overflow: visible;
-  background: none;
+  margin: 0 -24px;
 }
 
 .wave-arrow {
-  width: 48px;
-  height: 48px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   border: none;
   background: #fff;
@@ -156,37 +144,37 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
-    width: 56px;
-    height: 56px;
+  transition: opacity 0.3s ease;
 }
 
-.wave-cards-container {
-  display: flex;
-  align-items: flex-end;
-  gap: 0;
-  width: 100vw;
-  max-width: 100vw;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
+.wave-arrow.left {
+  left: 24px;
 }
 
-.wave-cards-container::before {
-  content: '';
-  position: absolute;
-  left: 0; right: 0; top: 50%;
-  height: 240px;
-  background: url('data:image/svg+xml;utf8,<svg width="100%" height="240" xmlns="http://www.w3.org/2000/svg"><path d="M0 120 Q 120 0, 240 120 T 480 120 T 720 120 T 960 120 T 1200 120" stroke="%233B82F6" stroke-width="4" fill="none"/></svg>');
-  z-index: 0;
+.wave-arrow.right {
+  right: 24px;
 }
 
 .wave-card-group {
   display: flex;
+  position: relative;
   align-items: flex-end;
-  gap: 0;
-  width: 100vw;
-  max-width: 100vw;
-  transition: transform 0.5s cubic-bezier(.77,0,.18,1);
+  width: 100%;
+  padding: 0 calc(50% - 480px);
+  transform: translateX(0);
+  transition: transform 0.5s ease-in-out;
+}
+
+.wave-card-group::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 240px;
+  background: url('data:image/svg+xml;utf8,<svg width="100%" height="240" xmlns="http://www.w3.org/2000/svg"><path d="M0 120 Q 120 0, 240 120 T 480 120 T 720 120 T 960 120 T 1200 120" stroke="%233B82F6" stroke-width="4" fill="none"/></svg>') repeat-x;
+  z-index: 0;
+  transform: translateY(-50%);
 }
 
 .wave-card {
@@ -200,15 +188,18 @@ body{
   align-items: center;
   justify-content: center;
   position: relative;
-  margin: 0 120px;
+  margin: 0 40px;
   overflow: visible;
-  transition: box-shadow 0.2s;
+  transition: transform 0.5s ease-in-out, opacity 0.3s ease;
+  flex-shrink: 0;
 }
+
 .wave-card.crest {
-  margin-top: -80px;
+  transform: translateY(-80px);
 }
+
 .wave-card.trough {
-  margin-top: 80px;
+  transform: translateY(80px);
 }
 
 .wave-card img {
@@ -216,6 +207,35 @@ body{
   height: 100%;
   object-fit: cover;
   border-radius: 18px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1400px) {
+  .wave-card {
+    width: 140px;
+    height: 140px;
+    margin: 0 30px;
+  }
+  .wave-card.crest {
+    transform: translateY(-60px);
+  }
+  .wave-card.trough {
+    transform: translateY(60px);
+  }
+}
+
+@media (max-width: 1024px) {
+  .wave-card {
+    width: 120px;
+    height: 120px;
+    margin: 0 20px;
+  }
+  .wave-card.crest {
+    transform: translateY(-40px);
+  }
+  .wave-card.trough {
+    transform: translateY(40px);
+  }
 }
 
 .wave-bullets {

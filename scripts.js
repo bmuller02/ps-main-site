@@ -29,77 +29,52 @@ sections.forEach(sec => obs.observe(sec));
 
 // Usage Statistics Wave Carousel
 document.addEventListener('DOMContentLoaded', function() {
-  const group = document.getElementById('wave-card-group');
-  const left = document.getElementById('wave-arrow-left');
-  const right = document.getElementById('wave-arrow-right');
-  const cards = group ? group.children : [];
-  let current = 0;
-  const visible = 4; // Show 4 cards at once
-
-  function getCardWidth() {
-    if (!cards.length) return 400; // Card width (160px) + margins (240px)
-    const card = cards[0];
-    const style = window.getComputedStyle(card);
-    const width = card.offsetWidth;
-    const marginLeft = parseInt(style.marginLeft);
-    const marginRight = parseInt(style.marginRight);
-    return width + marginLeft + marginRight;
-  }
-
-  function updateVisibility() {
-    // Show/hide cards based on visibility
-    Array.from(cards).forEach((card, index) => {
-      const isVisible = index >= current && index < current + visible;
-      card.style.opacity = isVisible ? '1' : '0';
-      card.style.pointerEvents = isVisible ? 'auto' : 'none';
-    });
-  }
-
-  function update() {
-    if (!group) return;
-    const cardWidth = getCardWidth();
-    const offset = -current * cardWidth;
-    group.style.transform = `translateX(${offset}px)`;
+    const container = document.querySelector('.wave-container');
+    const group = document.querySelector('.wave-card-group');
+    const left = document.querySelector('.wave-arrow.left');
+    const right = document.querySelector('.wave-arrow.right');
+    const cards = Array.from(document.querySelectorAll('.wave-card'));
     
-    // Update button states
-    left.disabled = current === 0;
-    right.disabled = current >= cards.length - visible;
-    
-    // Update card visibility
-    updateVisibility();
-  }
+    let currentPosition = 0;
+    const visibleCards = 4;
+    const totalCards = cards.length;
 
-  // Event listeners
-  if (left && right && group) {
-    left.addEventListener('click', function() {
-      if (current > 0) {
-        current--;
-        update();
-      }
+    function updateCarousel() {
+        // Calculate the width of one card position (including margins)
+        const cardWidth = container.offsetWidth / visibleCards;
+        
+        // Move the entire group (cards + wave)
+        group.style.transform = `translateX(${-currentPosition * cardWidth}px)`;
+        
+        // Update arrow visibility
+        left.style.opacity = currentPosition === 0 ? '0.5' : '1';
+        right.style.opacity = currentPosition >= totalCards - visibleCards ? '0.5' : '1';
+        
+        // Enable/disable arrows
+        left.disabled = currentPosition === 0;
+        right.disabled = currentPosition >= totalCards - visibleCards;
+    }
+
+    // Add click handlers
+    left.addEventListener('click', () => {
+        if (currentPosition > 0) {
+            currentPosition--;
+            updateCarousel();
+        }
     });
 
-    right.addEventListener('click', function() {
-      if (current < cards.length - visible) {
-        current++;
-        update();
-      }
+    right.addEventListener('click', () => {
+        if (currentPosition < totalCards - visibleCards) {
+            currentPosition++;
+            updateCarousel();
+        }
     });
 
-    // Update on window resize
-    window.addEventListener('resize', () => {
-      update();
-    });
+    // Handle window resize
+    window.addEventListener('resize', updateCarousel);
 
-    // Initial update
-    update();
-  }
-});
-      if (current < cards.length - visible) current++;
-      update();
-    });
-    window.addEventListener('resize', update);
-    update();
-  }
+    // Initial setup
+    updateCarousel();
 });
 
 // Footer year
