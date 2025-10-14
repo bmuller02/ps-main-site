@@ -28,7 +28,6 @@ const obs = new IntersectionObserver((entries) => {
 sections.forEach(sec => obs.observe(sec));
 
 // Usage Statistics Wave Carousel
-document.addEventListener('DOMContentLoaded', function() {
   const group = document.getElementById('wave-card-group');
   const left = document.getElementById('wave-arrow-left');
   const right = document.getElementById('wave-arrow-right');
@@ -51,6 +50,38 @@ document.addEventListener('DOMContentLoaded', function() {
       if (current < cards.length - visible) current++;
       update();
     });
+    update();
+  }
+});
+document.addEventListener('DOMContentLoaded', function() {
+  const group = document.getElementById('wave-card-group');
+  const left = document.getElementById('wave-arrow-left');
+  const right = document.getElementById('wave-arrow-right');
+  const cards = group ? group.children : [];
+  let current = 0;
+  const visible = 4;
+  function getCardWidth() {
+    if (!cards.length) return 160;
+    return cards[0].offsetWidth + 32; // 32px margin (16px each side)
+  }
+  function update() {
+    if (!group) return;
+    const cardWidth = getCardWidth();
+    const offset = -current * cardWidth;
+    group.style.transform = `translateX(${offset}px)`;
+    left.disabled = current === 0;
+    right.disabled = current >= cards.length - visible;
+  }
+  if (left && right && group) {
+    left.addEventListener('click', function() {
+      if (current > 0) current--;
+      update();
+    });
+    right.addEventListener('click', function() {
+      if (current < cards.length - visible) current++;
+      update();
+    });
+    window.addEventListener('resize', update);
     update();
   }
 });

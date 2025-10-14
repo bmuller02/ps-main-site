@@ -98,7 +98,7 @@ body{
   left: 0;
   right: 0;
   bottom: 0;
-  height: 25%;
+  height: 45%;
   pointer-events: none;
   background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #fff 100%);
   z-index: 2;
@@ -143,72 +143,83 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
+    width: 56px;
+    height: 56px;
 }
 
 .wave-cards-container {
   display: flex;
   align-items: flex-end;
-  gap: 32px;
-  width: 70%;
+  gap: 0;
+  width: 100vw;
+  max-width: 100vw;
   justify-content: center;
   position: relative;
+  overflow: hidden;
 }
 
 .wave-cards-container::before {
   content: '';
   position: absolute;
   left: 0; right: 0; top: 50%;
-  height: 32px;
-  background: url('data:image/svg+xml;utf8,<svg width="100%" height="32" xmlns="http://www.w3.org/2000/svg"><path d="M0 16 Q 25 0, 50 16 T 100 16 T 150 16 T 200 16 T 250 16 T 300 16 T 350 16 T 400 16" stroke="%233B82F6" stroke-width="4" fill="none"/></svg>');
+  height: 40px;
+  background: url('data:image/svg+xml;utf8,<svg width="100%" height="40" xmlns="http://www.w3.org/2000/svg"><path d="M0 20 Q 60 0, 120 20 T 240 20 T 360 20 T 480 20 T 600 20 T 720 20 T 840 20 T 960 20 T 1080 20 T 1200 20" stroke="%233B82F6" stroke-width="4" fill="none"/></svg>');
   z-index: 0;
 }
 
 .wave-card-group {
   display: flex;
   align-items: flex-end;
-  gap: 32px;
-  width: 100%;
+  gap: 0;
+  width: 100vw;
+  max-width: 100vw;
   transition: transform 0.5s cubic-bezier(.77,0,.18,1);
 }
 
 .wave-card {
-  width: 80px;
-  height: 80px;
+  width: 160px;
+  height: 160px;
   background: #fff;
-  border-radius: 16px;
+  border-radius: 24px;
   box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
-  overflow: hidden;
+  margin: 0 16px;
+  overflow: visible;
+  transition: box-shadow 0.2s;
+}
+.wave-card.crest {
+  margin-top: 0;
+}
+.wave-card.trough {
+  margin-top: 40px;
 }
 
 .wave-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 18px;
 }
 
 .wave-bullets {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120px;
-  text-align: center;
-  font-size: 14px;
+  position: relative;
+  width: 140px;
+  text-align: left;
+  font-size: 15px;
   color: var(--muted);
   list-style: disc inside;
+  margin: 8px auto 0 auto;
+  padding-left: 18px;
 }
 .wave-bullets.top {
-  bottom: 100%;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 .wave-bullets.bottom {
-  top: 100%;
-  margin-top: 12px;
+  margin-top: 8px;
 }
 
 /* Guides */
