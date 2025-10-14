@@ -27,5 +27,33 @@ const obs = new IntersectionObserver((entries) => {
 }, { rootMargin: "-40% 0px -55% 0px", threshold: [0, 0.25, 0.5, 1] });
 sections.forEach(sec => obs.observe(sec));
 
+// Usage Statistics Wave Carousel
+document.addEventListener('DOMContentLoaded', function() {
+  const group = document.getElementById('wave-card-group');
+  const left = document.getElementById('wave-arrow-left');
+  const right = document.getElementById('wave-arrow-right');
+  const cards = group ? group.children : [];
+  let current = 0;
+  const visible = 3;
+  function update() {
+    if (!group) return;
+    const offset = -current * (cards[0]?.offsetWidth + 32 || 112);
+    group.style.transform = `translateX(${offset}px)`;
+    left.disabled = current === 0;
+    right.disabled = current >= cards.length - visible;
+  }
+  if (left && right && group) {
+    left.addEventListener('click', function() {
+      if (current > 0) current--;
+      update();
+    });
+    right.addEventListener('click', function() {
+      if (current < cards.length - visible) current++;
+      update();
+    });
+    update();
+  }
+});
+
 // Footer year
 document.getElementById('year').textContent = new Date().getFullYear();
