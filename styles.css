@@ -120,18 +120,27 @@ body{
 
 /* Usage Statistics Wave Design */
 #stats {
-  padding-top: 160px !important;  /* Extra space for crest cards */
-  padding-bottom: 160px !important;
-  overflow: visible !important;
+  padding: 72px 0;
+  overflow: hidden;
+  position: relative;
+}
+
+#stats .section__title {
+  margin-bottom: 180px;  /* Push title up away from cards */
 }
 
 .wave-container {
   position: relative;
-  width: 100%;
-  min-height: 600px;
-  margin: 0;
-  padding: 40px 0;
-  overflow: visible;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .wave-arrow {
@@ -167,20 +176,21 @@ body{
   position: relative;
   align-items: center;
   width: max-content;
-  padding: 0;
+  padding: 0 calc(50% - 400px); /* Adjust based on visible cards */
   transform: translateX(0);
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   margin: 0 auto;
 }
 
-.wave-card-group::before {  /* Move wave pattern here */
+.wave-container::before {  /* Move wave pattern to container */
   content: '';
   position: absolute;
-  left: -50vw;
-  right: -50vw;
+  left: 0;
+  right: 0;
   top: 50%;
-  height: 240px;
-  background: url('data:image/svg+xml;utf8,<svg width="100%" height="240" xmlns="http://www.w3.org/2000/svg"><path d="M0 120 Q 120 0, 240 120 T 480 120 T 720 120 T 960 120 T 1200 120" stroke="%233B82F6" stroke-width="4" fill="none"/></svg>') repeat-x;
+  height: 200px;
+  background: url('data:image/svg+xml;utf8,<svg width="1200" height="200" xmlns="http://www.w3.org/2000/svg"><path d="M0 100 Q 150 0, 300 100 T 600 100 T 900 100 T 1200 100" stroke="%233B82F6" stroke-width="4" fill="none" vector-effect="non-scaling-stroke"/></svg>') repeat-x center;
+  background-size: 1200px 200px;
   transform: translateY(-50%);
   z-index: 0;
   pointer-events: none;
@@ -199,8 +209,8 @@ body{
 }
 
 .wave-card {
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   background: #fff;
   border-radius: 24px;
   box-shadow: var(--shadow);
@@ -209,20 +219,20 @@ body{
   align-items: center;
   justify-content: center;
   position: relative;
-  margin: 0 40px;
+  margin: 0 30px;
   overflow: visible;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   flex-shrink: 0;
   opacity: 1;
   z-index: 1;
 }
 
 .wave-card.crest {
-  transform: translateY(-120px);
+  transform: translateY(-90px);
 }
 
 .wave-card.trough {
-  transform: translateY(120px);
+  transform: translateY(90px);
 }
 
 .wave-card img {

@@ -1,0 +1,82 @@
+.wave-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 60px 0;
+}
+
+.wave-card-container {
+  display: flex;
+  position: relative;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+  width: 100%;
+  overflow: hidden;
+}
+
+.wave-card-group {
+  display: flex;
+  position: absolute;
+  transition: opacity 0.5s ease;
+  width: 100%;
+  justify-content: center;
+}
+
+.wave-card {
+  width: 180px;
+  height: 180px;
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 0 30px;
+  overflow: visible;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+  opacity: 1;
+  z-index: 1;
+}
+
+.wave-card.crest {
+  transform: translateY(-90px);
+}
+
+.wave-card.trough {
+  transform: translateY(90px);
+}
+
+.wave-nav-prev,
+.wave-nav-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  z-index: 2;
+  transition: background-color 0.3s ease;
+}
+
+.wave-nav-prev {
+  left: 20px;
+}
+
+.wave-nav-next {
+  right: 20px;
+}
+
+.wave-nav-prev:hover,
+.wave-nav-next:hover {
+  background: var(--primary-hover);
+}
