@@ -27,48 +27,5 @@ const obs = new IntersectionObserver((entries) => {
 }, { rootMargin: "-40% 0px -55% 0px", threshold: [0, 0.25, 0.5, 1] });
 sections.forEach(sec => obs.observe(sec));
 
-// Usage Statistics Wave Carousel
-document.addEventListener('DOMContentLoaded', function() {
-    const carousel = {
-        container: document.querySelector('.wave-container'),
-        group: document.querySelector('.wave-card-group'),
-        prevBtn: document.querySelector('.wave-arrow.left'),
-        nextBtn: document.querySelector('.wave-arrow.right'),
-        cards: Array.from(document.querySelectorAll('.wave-card')),
-        position: 0,
-        visibleCards: 4
-    };
-
-    function moveCarousel(direction) {
-        const totalCards = carousel.cards.length;
-        const cardWidth = carousel.cards[0].offsetWidth + 80; // width + margins
-        const maxPosition = totalCards - carousel.visibleCards;
-
-        // Update position
-        carousel.position = Math.max(0, Math.min(maxPosition, carousel.position + direction));
-
-        // Calculate movement
-        const moveX = -carousel.position * cardWidth;
-        
-        // Apply transform
-        carousel.group.style.transform = `translateX(${moveX}px)`;
-
-        // Update button states
-        carousel.prevBtn.disabled = carousel.position === 0;
-        carousel.nextBtn.disabled = carousel.position === maxPosition;
-        
-        // Update button styles
-        carousel.prevBtn.style.opacity = carousel.position === 0 ? '0.5' : '1';
-        carousel.nextBtn.style.opacity = carousel.position === maxPosition ? '0.5' : '1';
-    }
-
-    // Event Listeners
-    carousel.prevBtn.addEventListener('click', () => moveCarousel(-1));
-    carousel.nextBtn.addEventListener('click', () => moveCarousel(1));
-
-    // Initial setup
-    moveCarousel(0);
-});
-
 // Footer year
 document.getElementById('year').textContent = new Date().getFullYear();
