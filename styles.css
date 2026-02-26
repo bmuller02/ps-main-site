@@ -173,6 +173,50 @@ body{
 .backlink{color:var(--primary); text-decoration:none}
 .split{display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:26px}
 .cta{margin-top:24px}
+.cta--rail{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:nowrap;
+}
+.cta--split{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:nowrap;
+}
+.cta__right{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-left:auto;
+  flex:0 1 auto;
+}
+.cta--rail .btn{
+  flex:0 1 auto;
+  white-space:nowrap;
+  font-size:clamp(12px, 1.6vw, 16px);
+  padding:clamp(6px, 1vw, 10px) clamp(8px, 1.4vw, 14px);
+}
+.cta--split .btn{
+  flex:0 1 auto;
+  white-space:nowrap;
+  font-size:clamp(12px, 1.6vw, 16px);
+  padding:clamp(6px, 1vw, 10px) clamp(8px, 1.4vw, 14px);
+}
+.cta--split{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+}
+.btn--navy{
+  background:#0f1a2a;
+  box-shadow:0 6px 16px rgba(15,26,42,.25);
+}
+.btn--navy:hover{background:#14233a}
 
 /* Footer */
 .footer{border-top:1px solid var(--border); background:#0f1a2a; color:#d1d5db}
