@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+.next/
+
+# Environment files
+.env.local
+.env*.local
+working notes.md
+
+# Vercel
+.vercel
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
