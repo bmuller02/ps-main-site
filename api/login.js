@@ -1,5 +1,4 @@
 // NOTE: Required packages are defined in package.json
-// Run 'npm install' in the project root to install them
 
 import SAML from 'saml2-js';
 
