@@ -4,7 +4,7 @@
   "description": "Platform Solutions Main Website",
   "scripts": {
     "dev": "vercel dev",
-    "build": "vercel build",
+    "build": "echo 'No build step required'",
     "deploy": "vercel deploy"
   },
   "dependencies": {
