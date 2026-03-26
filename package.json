@@ -8,11 +8,11 @@
     "deploy": "vercel deploy"
   },
   "dependencies": {
-    "saml2-js": "^4.0.2",
+    "cookie": "^0.6.0",
     "jsonwebtoken": "^9.0.2",
-    "cookie": "^0.6.0"
+    "saml2-js": "^4.0.2"
   },
   "devDependencies": {
-    "vercel": "^33.0.0"
+    "vercel": "^50.37.1"
   }
 }
