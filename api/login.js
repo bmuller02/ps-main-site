@@ -27,10 +27,14 @@ export default function handler(req, res) {
     // ========================================
     // Generate SAML Authentication Request
     // ========================================
-    const authn_request = sp.create_login_request_url(idp, {});
-
-    // Redirect user to company login page
-    res.redirect(302, authn_request);
+    sp.create_login_request_url(idp, {}, (err, login_url) => {
+      if (err) {
+        console.error('SAML Login Error:', err);
+        return res.status(500).json({ error: 'Authentication initiation failed' });
+      }
+      // Redirect user to company login page
+      res.redirect(302, login_url);
+    });
   } catch (error) {
     console.error('SAML Login Error:', error);
     res.status(500).json({ error: 'Authentication initiation failed' });

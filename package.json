@@ -1,9 +1,10 @@
 {
   "name": "ps-main-site",
   "version": "1.0.0",
+  "packageManager": "npm@11.6.2",
   "description": "Platform Solutions Main Website",
   "scripts": {
-    "dev": "vercel dev",
+    "dev": "echo \"No local dev script. Use Vercel CLI directly.\"",
     "build": "echo 'No build step required'",
     "deploy": "vercel deploy"
   },
